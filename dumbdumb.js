@@ -1,23 +1,19 @@
 ((state, timeLeftFn) => {
-    const turnDirections = ['right', 'left', 'about-face'];
-    const turnDirection = turnDirections[Math.floor(Math.random() * 3)];
-
-    const smokeDirections = ['forward', 'backward', 'left', 'right', 'drop'];
-    const smokeDirection = smokeDirections[Math.floor(Math.random() * 5)];
-
-    const index = Math.floor(Math.random() * 17);
-    const command = index < 10 ?
-        { action: 'move', metadata: {} } :
-        index < 12 ?
-            { action: 'turn', metadata: { direction: turnDirection } } :
-            index < 16 ?
-                { action: 'shoot', metadata: {} } :
-                { action: 'smoke', metadata: { direction: smokeDirection } };
-
-    return {
-        command,
-        state: {
-            hello: 'world'
+    const turn = { action: 'turn', metadata: { direction: 'left' } };
+    const shoot = { action: 'shoot', metadata: {} };
+    var turned = false;
+    if (state['saved-state'] != undefined) {
+        if (state['saved-state']['last-action'] != undefined)  {
+            if (state['saved-state']['last-action'] == 'turn') {
+                turned = true
+            }
         }
-    };
+    }
+    const command = turned ? shoot : turn;
+    return {
+      command,
+      state: {
+        'last-action': turned ? 'shoot' : 'turn'
+      }
+    }
 });
