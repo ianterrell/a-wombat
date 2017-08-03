@@ -10,13 +10,13 @@
       { action: 'move', metadata: {} },
       { action: 'move', metadata: {} },
       { action: 'move', metadata: {} },
-      { action: 'turn', metadata { direction: 'right'} },
+      { action: 'turn', metadata: { direction: 'right'} },
       { action: 'shoot', metadata: {} },
-      { action: 'turn', metadata { direction: 'left'} },
+      { action: 'turn', metadata: { direction: 'left'} },
       { action: 'shoot', metadata: {} },
-      { action: 'turn', metadata { direction: 'left'} },
+      { action: 'turn', metadata: { direction: 'left'} },
       { action: 'shoot', metadata: {} },
-      { action: 'turn', metadata { direction: 'left'} },
+      { action: 'turn', metadata: { direction: 'left'} }
     ];
 
     const command = actions[lastAction % actions.length]
